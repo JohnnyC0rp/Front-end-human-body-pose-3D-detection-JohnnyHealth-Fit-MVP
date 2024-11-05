@@ -114,7 +114,7 @@ const camera = new Camera(video, {
     },
     width: 960,
     height: 540,
-    facingMode: { ideal: 'user' }
+    facingMode: { ideal: 'environment' }
 });
 
 camera.start();
