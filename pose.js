@@ -51,23 +51,23 @@ function onResultsHolistic(results) {
             { color: "yellow", fillColor: 'yellow' });
     }
 
-    // Draw face mesh
-    if (results.faceLandmarks) {
-        drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
-            { color: '#C0C0C070', lineWidth: 1 });
-        drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_RIGHT_EYE,
-            { color: 'rgb(0,217,231)' });
-        drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_RIGHT_EYEBROW,
-            { color: 'rgb(0,217,231)' });
-        drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_LEFT_EYE,
-            { color: 'rgb(255,138,0)' });
-        drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_LEFT_EYEBROW,
-            { color: 'rgb(255,138,0)' });
-        drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_FACE_OVAL,
-            { color: '#E0E0E0' });
-        drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_LIPS,
-            { color: '#E0E0E0' });
-    }
+    // // Draw face mesh
+    // if (results.faceLandmarks) {
+    //     drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
+    //         { color: '#C0C0C070', lineWidth: 1 });
+    //     drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_RIGHT_EYE,
+    //         { color: 'rgb(0,217,231)' });
+    //     drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_RIGHT_EYEBROW,
+    //         { color: 'rgb(0,217,231)' });
+    //     drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_LEFT_EYE,
+    //         { color: 'rgb(255,138,0)' });
+    //     drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_LEFT_EYEBROW,
+    //         { color: 'rgb(255,138,0)' });
+    //     drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_FACE_OVAL,
+    //         { color: '#E0E0E0' });
+    //     drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_LIPS,
+    //         { color: '#E0E0E0' });
+    // }
 
     // Draw hand landmarks
     if (results.leftHandLandmarks) {
