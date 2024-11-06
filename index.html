@@ -3,18 +3,12 @@
 
 <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
 
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.1/camera_utils.js"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.1/control_utils.js"
-        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.2/drawing_utils.js"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.2/pose.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.1/face_mesh.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="images/logo.png">
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5/pose.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4/face_mesh.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.5/holistic.js"></script>
 
 
@@ -25,8 +19,6 @@
     <img id="loading_pic" src="images/loading.png">
     <canvas class="output5" width=1080 height=1920></canvas>
 
-
-    <!-- <div  style = "visibility:hidden" class="control5"></div> -->
     <div style="visibility:hidden" class="control5"></div>
 
     <!-- WEBCAM INPUT -->
@@ -36,9 +28,7 @@
                 Webcam Input
             </p>
             <div class="panel-block">
-                <!-- <video class="input_video5_full" playsinline></video> -->
                 <video style="visibility:hdden" class="input_video5"></video>
-                <!-- <video style="visibility:hdden" class="input_video5" playsinline></video> -->
             </div>
         </article>
     </div>

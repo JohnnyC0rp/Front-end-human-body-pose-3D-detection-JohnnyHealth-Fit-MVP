@@ -3,7 +3,6 @@ const out = document.getElementsByClassName('output5')[0];
 const controlsElement = document.getElementsByClassName('control5')[0];
 const canvasCtx = out.getContext('2d');
 const loading_pic = document.getElementById("loading_pic")
-const fpsControl = new FPS();
 var loading_deleted = false;
 
 // Device detection function
@@ -21,8 +20,6 @@ function onResultsHolistic(results) {
         loading_pic.remove();
         loading_deleted = true;
     }
-
-    fpsControl.tick();
 
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, out.width, out.height);
@@ -90,80 +87,23 @@ const holistic = new Holistic({
     }
 });
 holistic.setOptions({
-    modelComplexity: 1,
+    modelComplexity: 0,
     smoothLandmarks: true,
     enableSegmentation: false,
-    refineFaceLandmarks: true,
+    refineFaceLandmarks: false,
     minDetectionConfidence: 0.5,
     minTrackingConfidence: 0.5
 });
 holistic.onResults(onResultsHolistic);
 
-// FPS Control Variables
-let lastFrameTime = 0;
-let targetFPS = 60; // Initial desired FPS
-let frameInterval = 1000 / targetFPS;
-
 const camera = new Camera(video, {
     onFrame: async () => {
-        const now = Date.now();
-        if (now - lastFrameTime >= frameInterval) {
-            lastFrameTime = now;
-            await holistic.send({ image: video });
-        }
+        await holistic.send({ image: video });
     },
-    width: 960,
-    height: 540,
+    width: 1440,
+    height: 810,
     facingMode: 'environment'
 });
 
 camera.start();
 
-new ControlPanel(controlsElement, {
-    selfieMode: false,
-    smoothLandmarks: true,
-    modelComplexity: 1,
-    targetFPS: 30, // Add targetFPS to options
-    minDetectionConfidence: 0.5,
-    minTrackingConfidence: 0.5
-})
-    .add([
-        new StaticText({ title: 'MediaPipe Holistic' }),
-        fpsControl,
-        new Toggle({ title: 'Selfie Mode', field: 'selfieMode' }),
-        new Toggle({ title: 'Smooth Landmarks', field: 'smoothLandmarks' }),
-        new Slider({
-            title: 'Model Complexity',
-            field: 'modelComplexity',
-            range: [0, 1],
-            step: 1
-        }),
-        new Slider({
-            title: 'Target FPS',
-            field: 'targetFPS',
-            range: [1, 60],
-            step: 1
-        }),
-        new Slider({
-            title: 'Min Detection Confidence',
-            field: 'minDetectionConfidence',
-            range: [0, 1],
-            step: 0.01
-        }),
-        new Slider({
-            title: 'Min Tracking Confidence',
-            field: 'minTrackingConfidence',
-            range: [0, 1],
-            step: 0.01
-        }),
-    ])
-    .on(options => {
-        video.classList.toggle('selfie', options.selfieMode);
-        holistic.setOptions(options);
-
-        // Update target FPS when slider changes
-        if (options.targetFPS) {
-            targetFPS = options.targetFPS;
-            frameInterval = 1000 / targetFPS;
-        }
-    });
